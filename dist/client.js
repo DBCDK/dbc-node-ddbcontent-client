@@ -25,7 +25,7 @@ function sendRequest(endpoint, method, qs) {
 
   return new Promise(function (resolve, reject) {
     var uri = endpoint + '/' + method;
-    logger.log('ddbContent client request with params', qs);
+    logger.log('info', 'ddbContent client request with params', qs);
     _request2['default'].get({ uri: uri, qs: qs }, function (err, response, body) {
       if (err) {
         logger.error('ddbContent client responded with an error', { err: err });
@@ -35,7 +35,7 @@ function sendRequest(endpoint, method, qs) {
         reject({ error: response });
       } else {
         var data = JSON.parse(body);
-        logger.info('ddbContent client responded with data', { path: uri, params: qs, data: data });
+        logger.log('info', 'ddbContent client responded with data', { path: uri, params: qs, data: data, body: body });
         resolve(data);
       }
     });
@@ -72,7 +72,7 @@ function getContentList(config, query) {
     agency: config.agency
   };
 
-  return sendRequest(config.endpoint, 'content/fetch', (0, _lodash.extend)(credentials, defaults, query));
+  return sendRequest(config.endpoint, 'content/fetch', (0, _lodash.extend)(credentials, defaults, query), config.logger);
 }
 
 /**
