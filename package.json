@@ -1,6 +1,6 @@
 {
   "name": "dbc-node-ddbcontent-client",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Client for fetching data from a ddb library",
   "main": "dist/client.js",
   "scripts": {
