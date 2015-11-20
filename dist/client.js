@@ -35,7 +35,7 @@ function sendRequest(endpoint, method, qs) {
         reject({ error: response });
       } else {
         var data = JSON.parse(body);
-        logger.log('info', 'ddbContent client responded with data', { path: uri, params: qs, data: data, body: body });
+        logger.log('info', 'ddbContent client responded with data', { path: uri, params: qs, data: data });
         resolve(data);
       }
     });
