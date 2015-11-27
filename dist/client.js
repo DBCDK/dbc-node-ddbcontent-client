@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-exports.init = init;
+exports['default'] = DdbContentClient;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -101,7 +101,7 @@ function isConfigValid(config, requiredKeys) {
  * @returns {{getSubjectSuggestions, getCreatorSuggestions, getLibrarySuggestions}}
  */
 
-function init(config) {
+function DdbContentClient(config) {
   isConfigValid(config, ['endpoint', 'agency', 'key']);
 
   config.logger = config.logger || console;
@@ -111,3 +111,5 @@ function init(config) {
     getContentList: getContentList.bind(null, config)
   };
 }
+
+module.exports = exports['default'];

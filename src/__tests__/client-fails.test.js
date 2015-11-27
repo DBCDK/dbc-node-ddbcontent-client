@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import * as DdbContent from '../client.js';
+import DdbContent from '../client.js';
 import {assert, expect} from 'chai';
 import sinon from 'sinon';
 import request from 'request'
@@ -26,7 +26,7 @@ describe('Test Failing scenarius in client.js', () => {
       }, '<html></html>'
     );
 
-    const suggest = DdbContent.init({
+    const suggest = DdbContent({
       endpoint: 'http://am.fs_rest.dev.inlead.dk/web',
       agency: '100000',
       key: 'b2573a3ea77a938fa86dc9fa05c99888f26992e9'
@@ -47,7 +47,7 @@ describe('Test Failing scenarius in client.js', () => {
     sinon
       .stub(request, 'get').yields({err: 'failure'});
 
-    const suggest = DdbContent.init({
+    const suggest = DdbContent({
       endpoint: 'http://am.fs_rest.dev.inlead.dk/web',
       agency: '100000',
       key: 'b2573a3ea77a938fa86dc9fa05c99888f26992e9'

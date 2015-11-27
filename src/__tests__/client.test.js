@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 
-import * as DdbContent from '../client.js';
+import DdbContent from '../client.js';
 import {assert, expect} from 'chai';
 import sinon from 'sinon';
 import request from 'request'
@@ -30,25 +30,25 @@ describe('Test methods in client.js', () => {
   });
 
   it('Test init method', () => {
-    expect(DdbContent.init).is.not.null;
+    expect(DdbContent).is.not.null;
 
-    assert.isFunction(DdbContent.init, 'init is a function');
+    assert.isFunction(DdbContent, 'init is a function');
 
-    expect(DdbContent.init).to.throw(Error);
+    expect(DdbContent).to.throw(Error);
 
     let config = {};
-    expect(() => DdbContent.init(config)).to.throw(Error);
+    expect(() => DdbContent(config)).to.throw(Error);
 
     config = {endpoint: 'test'};
-    expect(() => DdbContent.init(config)).to.throw(Error);
+    expect(() => DdbContent(config)).to.throw(Error);
 
     config = {endpoint: 'test', method: 'method'};
-    expect(() => DdbContent.init(config)).to.throw(Error);
+    expect(() => DdbContent(config)).to.throw(Error);
 
     config = {endpoint: 'test', agency: '1234', key: '1234'};
-    expect(() => DdbContent.init(config)).to.not.throw(Error);
+    expect(() => DdbContent(config)).to.not.throw(Error);
 
-    const methods = DdbContent.init(config);
+    const methods = DdbContent(config);
     assert.property(methods, 'getContentById');
     assert.property(methods, 'getContentList');
   });
@@ -59,7 +59,7 @@ describe('Test methods in client.js', () => {
       agency: '100000',
       key: 'b2573a3ea77a938fa86dc9fa05c99888f26992e9'
     };
-    let ddbContent = DdbContent.init(config);
+    let ddbContent = DdbContent(config);
 
     ddbContent.getContentById({node: 36})
       .then((data) => {
@@ -82,7 +82,7 @@ describe('Test methods in client.js', () => {
       agency: '100000',
       key: 'b2573a3ea77a938fa86dc9fa05c99888f26992e9'
     };
-    let ddbContent = DdbContent.init(config);
+    let ddbContent = DdbContent(config);
     ddbContent.getContentById({})
       .then((data) => {
         done(new Error('this promise should fail'));
@@ -99,7 +99,7 @@ describe('Test methods in client.js', () => {
       agency: '100000',
       key: 'b2573a3ea77a938fa86dc9fa05c99888f26992e9'
     };
-    let ddbContent = DdbContent.init(config);
+    let ddbContent = DdbContent(config);
     assert.property(ddbContent, 'getContentList');
     ddbContent.getContentList({amount: 5})
       .then((data) => {
