@@ -90,7 +90,7 @@ function isConfigValid(config, requiredKeys) {
  * @param {Object} config Requires endpoint and port
  * @returns {{getSubjectSuggestions, getCreatorSuggestions, getLibrarySuggestions}}
  */
-export function init(config) {
+export default function DdbContentClient(config) {
   isConfigValid(config, ['endpoint', 'agency', 'key']);
 
   config.logger = config.logger || console;
